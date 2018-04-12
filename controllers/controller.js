@@ -1,9 +1,9 @@
 const request = require('request');
 
-const findUser = (name) => {
+const findUser = (username) => {
 
     const options = {
-        url:`https://api.github.com/users/${name}`,
+        url:`https://api.github.com/users/${username}`,
         method: 'GET',
         headers: {
             'User-Agent': 'joshuaagapay'
