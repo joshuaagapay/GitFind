@@ -21,12 +21,12 @@ const findUser = (username, handleResult) => {
 
 const printUsers = (users) => {
     let table = new Table({
-        head: ['Name', 'Followers','Following'],
-        colWidths:[30,11,11]
+        head: ['ID','USERNAME','NAME', 'FOLLOWERS','FOLLOWING'],
+        colWidths:[15,20,30,11,11]
     });
     users.forEach((element,index) => {
         findUser(element,(result) => {
-            table.push([result.name,result.followers,result.following]);
+            table.push([result.id,result.login,result.name,result.followers,result.following]);
             if(index == users.length-1){
                 console.log(table.toString());
                 return;
