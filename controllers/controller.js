@@ -20,18 +20,21 @@ const findUser = (username, handleResult) => {
 }
 
 const printUsers = (users) => {
-    const table = new Table({
+    let table = new Table({
         head: ['Name', 'Followers','Following'],
         colWidths:[30,11,11]
     });
-
-    users.forEach(element => {
+    users.forEach((element,index) => {
         findUser(element,(result) => {
             table.push([result.name,result.followers,result.following]);
-            console.log(table.toString());
+            if(index == users.length-1){
+                console.log(table.toString());
+                return;
+            }
         });
     });
-    
+    // console.log(table.toString());
+   
 }
 
 module.exports = {findUser, printUsers};
