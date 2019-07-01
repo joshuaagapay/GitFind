@@ -6,7 +6,7 @@
 
 const program  = require('commander');
 
-const {findUser, printUsers} = require('./controllers/controller.js');
+const {printUsers} = require('./controllers/controller.js');
 
 const find = (username) => {
     return username.split(',');
@@ -27,5 +27,7 @@ program.parse(process.argv);
 let users = program.find;
 
 printUsers(users);
+
+            
 
 
