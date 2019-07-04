@@ -1,13 +1,11 @@
 const Table     = require('cli-table2');
 const fetch     = require('node-fetch');
 
-
 const findUser = (username) => {
     let url = `https://api.github.com/users/${username}`;
-    return fetch(url)
-                .then(response => {return response.json()});
+     return fetch(url)
+                .then(response => response.json());
 }
-
 
 const printUsers = async (users) => {
     let table = new Table({
@@ -15,14 +13,17 @@ const printUsers = async (users) => {
         colWidths:[15,20,30,11,11]
     });
     let promises = [];
-    users.forEach((element) => {
-        promises.push(findUser(element));    
-    });
 
-    for await (let result of promises) {
+    for (let x of users){  
+        let res = await findUser(x);
+        if(res.id != null) promises.push(res);
+    }
+
+    for (let result of promises) {
         table.push([result.id,result.login,result.name,result.followers,result.following]); 
     } 
     console.log(table.toString()); 
+    
 }
 
 // const findUser = (username, handleresult) => {
